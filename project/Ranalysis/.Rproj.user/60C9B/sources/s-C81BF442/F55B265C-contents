@@ -1,0 +1,11 @@
+rm(list=ls())
+pValues <- vector()
+numTrials <- 1000
+for( i in 1:numTrials)
+{
+  manyValues <-  rnorm(10,mean=100,sd=12)
+  manyValues = - abs((mean(manyValues)-100 )/(12/sqrt(10))
+  pValues[i] = 2*(pnorm(manyValues))
+}
+hist(pValues,breaks=50)
+

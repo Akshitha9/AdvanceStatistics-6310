@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1652371182080.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "C4D028F",
+    "lastKnownWriteTime" : 1652403785,
+    "last_content_update" : 1652404126263,
+    "path" : "~/Documents/GitHub/AdvanceStatistics-6310/project/Ranalysis/project.r",
+    "project_path" : "project.r",
+    "properties" : {
+        "cursorPosition" : "7,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

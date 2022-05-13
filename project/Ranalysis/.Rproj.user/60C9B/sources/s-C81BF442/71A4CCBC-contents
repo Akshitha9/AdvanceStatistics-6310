@@ -1,0 +1,58 @@
+rm(list=ls())
+#install.packages("tidyverse")
+suppressPackageStartupMessages(library(tidyverse))
+setwd("/Users/akshitha/Documents/GitHub/AdvanceStatistics-6310/project/pythondataprocessor")
+myfile1=read.csv("finalpatients.csv",header = TRUE, sep=",", check.names=FALSE)
+myfile2= read.csv("finalgenevalues.csv",header= TRUE, sep=",",check.names=FALSE)
+#x <- myfile2[1,4:93]
+print(myfile2[1:nrow(myfile2),4])
+print(c(rep(myfile1$AGE[1],nrow(myfile2))))
+
+age<- myfile1$AGE
+age
+all(is.na(myfile2))
+print(myfile1)
+print(myfile2[1,4:93])
+Pvalues_categories <- vector()
+nrow(myfile2)
+
+for ( i in 4:ncol(myfile2)){
+  
+  mydata <- as.numeric(myfile2[1:nrow(myfile2),i])
+  age <- c(rep(myfile1$AGE[i-3],nrow(myfile2)))
+  
+  #age<- myfile1$AGE
+  if (all(is.na(myfile2)) == TRUE ){
+    mylm<- lm(mydata ~ age,data =myfile2)
+  Pvalues_categories[i] <- anova(mylm)$"Pr(>F)"[1]
+  }
+}
+Pvalues_categories<- c()# order by patient id's
+
+age<- myfile1$AGE
+length(age)
+for ( i in 1:nrow(myfile2)){
+  #print(i)
+  mydata <- as.numeric(myfile2[i,4:93])
+  #print(length(mydata))
+  mylm<- lm(mydata ~ age)
+  Pvalues_categories[i] <- anova(mylm)$"Pr(>F)"[1]
+  
+}
+Pvalues_categories
+hist(Pvalues_categories,main = "Linear Regression for genes  Vs Age",breaks =30,col = "red", xlab="P-values")
+AdjPval_Lme <- sum(p.adjust(Pvalues_categories,method = "fdr") <= 0.05)
+AdjPval_Lme
+AdjPval_Lme_FDR <-sum(Pvalues_categories <= 0.1) 
+AdjPval_Lme_FDR
+# Performing T.test for gender vs expression levels
+
+
+Tanalysis<-c()
+y=myfile1$SEX
+for ( i in 1:nrow(myfile2)){
+  x=as.numeric(myfile2[i,4:93])
+  #print(i)
+  Tanalysis[i]= t.test(x~y)$p.value
+}
+hist(Tanalysis,main = "T test for genes  Vs Gender",breaks =30,col = "blue", xlab="P-values")
