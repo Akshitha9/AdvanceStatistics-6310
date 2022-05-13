@@ -3,7 +3,7 @@ import pandas as pd
 from tqdm import tqdm
 import os
 
-dropandcreate = 'N'
+dropandcreate = 'Y'
 loadbasetables = 'Y'
 dbinfo = 'db/project.db'
 
